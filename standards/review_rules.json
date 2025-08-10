@@ -1,0 +1,148 @@
+{
+  "completeness": {
+    "required_sections": [
+      "executive_summary",
+      "business_requirements",
+      "technical_requirements", 
+      "architecture_overview",
+      "component_design",
+      "security_considerations",
+      "performance_requirements",
+      "scalability_design",
+      "deployment_architecture",
+      "monitoring_logging",
+      "disaster_recovery",
+      "cost_analysis",
+      "risk_assessment",
+      "testing_strategy"
+    ],
+    "severity": "high",
+    "weight": 25
+  },
+  "security": {
+    "patterns": [
+      "authentication",
+      "authorization", 
+      "encryption",
+      "ssl/tls",
+      "oauth",
+      "jwt",
+      "api\\s*key",
+      "security\\s*group",
+      "firewall",
+      "vpc",
+      "iam",
+      "rbac",
+      "zero\\s*trust",
+      "penetration\\s*test",
+      "vulnerability\\s*assessment"
+    ],
+    "severity": "critical",
+    "minimum_coverage": 4,
+    "weight": 35
+  },
+  "scalability": {
+    "patterns": [
+      "load\\s*balancer",
+      "auto\\s*scaling",
+      "horizontal\\s*scaling", 
+      "vertical\\s*scaling",
+      "caching",
+      "cdn",
+      "database\\s*sharding",
+      "microservices",
+      "containerization",
+      "orchestration"
+    ],
+    "severity": "high",
+    "minimum_coverage": 3,
+    "weight": 20
+  },
+  "monitoring": {
+    "patterns": [
+      "monitoring",
+      "logging",
+      "alerting",
+      "metrics",
+      "dashboard",
+      "observability",
+      "tracing",
+      "apm",
+      "sla",
+      "slo"
+    ],
+    "severity": "medium", 
+    "minimum_coverage": 3,
+    "weight": 15
+  },
+  "compliance": {
+    "patterns": [
+      "gdpr",
+      "hipaa", 
+      "sox",
+      "pci\\s*dss",
+      "compliance",
+      "audit",
+      "data\\s*retention",
+      "data\\s*privacy",
+      "regulatory"
+    ],
+    "severity": "high",
+    "weight": 20
+  },
+  "data_management": {
+    "patterns": [
+      "data\\s*model",
+      "database\\s*design",
+      "data\\s*flow",
+      "etl",
+      "data\\s*warehouse",
+      "data\\s*lake",
+      "backup",
+      "recovery",
+      "replication"
+    ],
+    "severity": "medium",
+    "minimum_coverage": 2,
+    "weight": 10
+  },
+  "integration": {
+    "patterns": [
+      "api\\s*design",
+      "rest",
+      "graphql",
+      "messaging",
+      "event\\s*driven",
+      "integration\\s*pattern",
+      "service\\s*mesh",
+      "circuit\\s*breaker"
+    ],
+    "severity": "medium",
+    "minimum_coverage": 2,
+    "weight": 15
+  },
+  "anti_patterns": {
+    "patterns": [
+      {
+        "pattern": "password\\s*in\\s*plain\\s*text",
+        "severity": "critical",
+        "message": "Plain text passwords should never be used"
+      },
+      {
+        "pattern": "hardcoded\\s*credential",
+        "severity": "critical", 
+        "message": "Hardcoded credentials pose security risks"
+      },
+      {
+        "pattern": "single\\s*point\\s*of\\s*failure",
+        "severity": "high",
+        "message": "Architecture should avoid single points of failure"
+      },
+      {
+        "pattern": "no\\s*backup\\s*strategy",
+        "severity": "high",
+        "message": "Backup and recovery strategy is essential"
+      }
+    ]
+  }
+}

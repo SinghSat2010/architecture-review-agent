@@ -1,0 +1,27 @@
+{
+  "name": "Enterprise Security Standards",
+  "version": "1.0",
+  "requirements": {
+    "authentication": {
+      "patterns": [
+        "multi-factor",
+        "sso",
+        "ldap"
+      ],
+      "mandatory": true
+    },
+    "data_encryption": {
+      "patterns": [
+        "aes-256",
+        "tls 1.3",
+        "end-to-end"
+      ],
+      "mandatory": true
+    }
+  },
+  "guidelines": [
+    "All data must be encrypted in transit and at rest",
+    "Multi-factor authentication is required for all systems",
+    "Regular security audits must be conducted"
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "microservices": {
+    "description": "Microservices architecture pattern for building distributed systems",
+    "characteristics": [
+      "service independence",
+      "api gateway", 
+      "service discovery",
+      "distributed data management",
+      "decentralized governance"
+    ],
+    "best_practices": [
+      "Each service should have a single responsibility",
+      "Services should communicate via well-defined APIs",
+      "Implement circuit breakers for resilience",
+      "Use distributed tracing for observability",
+      "Implement service mesh for communication",
+      "Design for failure and resilience"
+    ],
+    "trade_offs": [
+      "Increased complexity in deployment and testing",
+      "Network latency between services",
+      "Data consistency challenges"
+    ],
+    "when_to_use": [
+      "Large, complex applications",
+      "Need for independent scaling",
+      "Multiple development teams",
+      "Different technology stacks required"
+    ]
+  },
+  "layered": {
+    "description": "Layered (N-tier) architecture pattern with clear separation of concerns",
+    "characteristics": [
+      "presentation layer",
+      "business layer", 
+      "data access layer",
+      "database layer"
+    ],
+    "best_practices": [
+      "Clear separation of concerns",
+      "Dependencies should flow downward",
+      "Avoid circular dependencies",
+      "Use dependency injection",
+      "Implement proper error handling at each layer"
+    ],
+    "trade_offs": [
+      "Can become monolithic",
+      "Performance overhead from layer traversal",
+      "Changes may ripple through layers"
+    ],
+    "when_to_use": [
+      "Traditional enterprise applications",
+      "Clear separation of business logic needed",
+      "Team expertise in layered approaches"
+    ]
+  },
+  "event_driven": {
+    "description": "Event-driven architecture pattern for loose coupling and scalability",
+    "characteristics": [
+      "event producers",
+      "event consumers",
+      "event store",
+      "event routing",
+      "asynchronous processing"
+    ],
+    "best_practices": [
+      "Design events to be immutable",
+      "Implement idempotent event handlers",
+      "Consider event versioning strategy",
+      "Use event sourcing for audit trails",
+      "Implement proper error handling and dead letter queues"
+    ],
+    "trade_offs": [
+      "Eventual consistency challenges",
+      "Complex debugging and testing",
+      "Event schema evolution challenges"
+    ],
+    "when_to_use": [
+      "High scalability requirements",
+      "Loose coupling between components",
+      "Real-time processing needs"
+    ]
+  },
+  "serverless": {
+    "description": "Serverless architecture pattern using Functions-as-a-Service",
+    "characteristics": [
+      "function-based execution",
+      "event-driven triggers",
+      "auto-scaling",
+      "pay-per-execution",
+      "stateless functions"
+    ],
+    "best_practices": [
+      "Keep functions small and focused",
+      "Minimize cold start times",
+      "Use environment variables for configuration",
+      "Implement proper error handling and retries",
+      "Monitor function performance and costs"
+    ],
+    "trade_offs": [
+      "Vendor lock-in concerns",
+      "Cold start latency",
+      "Limited execution time",
+      "Debugging complexity"
+    ],
+    "when_to_use": [
+      "Variable workloads",
+      "Event-driven processing",
+      "Cost optimization important",
+      "Rapid development needed"
+    ]
+  },
+  "hexagonal": {
+    "description": "Hexagonal (Ports and Adapters) architecture for testable and maintainable code",
+    "characteristics": [
+      "ports and adapters",
+      "domain core isolation",
+      "dependency inversion",
+      "external system abstraction"
+    ],
+    "best_practices": [
+      "Keep business logic independent of external concerns",
+      "Use interfaces to define ports",
+      "Implement adapters for external systems",
+      "Follow dependency inversion principle",
+      "Write comprehensive unit tests for domain logic"
+    ],
+    "trade_offs": [
+      "Initial complexity increase",
+      "More abstraction layers",
+      "Learning curve for developers"
+    ],
+    "when_to_use": [
+      "Complex business logic",
+      "Need for high testability",
+      "Multiple external system integrations",
+      "Long-term maintainability important"
+    ]
+  },
+  "cqrs": {
+    "description": "Command Query Responsibility Segregation pattern",
+    "characteristics": [
+      "command and query separation",
+      "different data models",
+      "eventual consistency",
+      "optimized read/write operations"
+    ],
+    "best_practices": [
+      "Separate command and query models completely",
+      "Use event sourcing for commands",
+      "Optimize read models for specific queries",
+      "Handle eventual consistency properly",
+      "Implement proper synchronization mechanisms"
+    ],
+    "trade_offs": [
+      "Increased complexity",
+      "Eventual consistency challenges",
+      "More infrastructure components"
+    ],
+    "when_to_use": [
+      "Complex read/write requirements",
+      "Different performance characteristics needed",
+      "High-scale applications",
+      "Audit trail requirements"
+    ]
+  }
+}
