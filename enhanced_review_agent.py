@@ -21,6 +21,7 @@ from architecture_review_agent import (
 )
 from config_manager import ConfigManager
 from plugin_system import PluginManager, PluginType
+from document_processor import DocumentProcessor, DocumentFormat, DocumentMetadata
 
 
 @dataclass

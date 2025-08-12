@@ -29,6 +29,15 @@ An intelligent agent that reads solution architecture, architecture patterns, an
 - Provides reference materials and standards links
 - Suggests discussion topics and focus areas
 
+📄 **Multi-Format Document Support**
+- **Word Documents**: .docx and .doc files with full text extraction
+- **PDF Files**: Comprehensive text extraction with layout preservation
+- **Text Files**: Plain text (.txt) and rich text (.rtf) documents
+- **Markdown**: .md files with header-based section detection
+- **HTML**: Web documents with structured content extraction
+- **Excel**: Spreadsheet data extraction and analysis
+- **PowerPoint**: Presentation content extraction (coming soon)
+
 ## Installation
 
 1. **Clone or download the files:**
@@ -46,11 +55,45 @@ pip install -r requirements.txt
 
 The agent works with Python's standard library, but optional dependencies provide enhanced functionality.
 
+### Document Processing Dependencies
+
+For full document format support, install the enhanced dependencies:
+
+```bash
+# Core document processing
+pip install python-docx python-docx2txt PyPDF2 pdfplumber
+
+# Additional formats
+pip install openpyxl beautifulsoup4 lxml
+
+# Or install all at once
+pip install -r requirements.txt
+```
+
+**Supported formats by dependency:**
+- **python-docx**: Word .docx files
+- **python-docx2txt**: Word .doc files  
+- **PyPDF2/pdfplumber**: PDF files
+- **openpyxl**: Excel files
+- **beautifulsoup4**: HTML files
+- **Built-in**: Text, Markdown files
+
 ## Quick Start
 
 ### 1. Basic Review
 ```bash
+# Markdown files
 python architecture_review_agent.py sample_architecture.md
+
+# Word documents
+python architecture_review_agent.py architecture.docx
+python architecture_review_agent.py architecture.doc
+
+# PDF files
+python architecture_review_agent.py architecture.pdf
+
+# Text files
+python architecture_review_agent.py architecture.txt
 ```
 
 ### 2. Generate HTML Report
@@ -60,7 +103,7 @@ python architecture_review_agent.py sample_architecture.md --output report.html 
 
 ### 3. Specify Artifact Type
 ```bash
-python architecture_review_agent.py my_doc.md --type solution_architecture --output review.json
+python architecture_review_agent.py my_doc.docx --type solution_architecture --output review.json
 ```
 
 ## Configuration
@@ -227,110 +270,3 @@ The agent evaluates architecture documents across multiple dimensions:
   "preparation_notes": [...]
 }
 ```
-
-### HTML Report Features
-- Interactive dashboard with metrics
-- Color-coded severity indicators
-- Expandable comment sections
-- Preparation checklist for architects
-
-## Supported Artifact Types
-
-- `solution_architecture` - Complete solution architecture documents
-- `architecture_pattern` - Reusable architecture patterns and templates  
-- `architecture_standard` - Organization standards and guidelines
-- `design_document` - Technical design documents
-- `technical_specification` - Detailed technical specifications
-
-## Customization
-
-### Adding Custom Review Rules
-
-1. Create custom rules in `standards/review_rules.json`
-2. Define patterns, severity levels, and weights
-3. Specify minimum coverage requirements
-
-### Extending Architecture Patterns
-
-1. Add patterns to `standards/architecture_patterns.json`
-2. Include best practices and trade-offs
-3. Specify when to use each pattern
-
-### Organization-Specific Standards
-
-1. Create custom JSON files in the standards directory
-2. Implement validation logic in the `_check_standards()` method
-3. Add references to organization documentation
-
-## Enterprise Integration
-
-### CI/CD Integration
-```yaml
-# Example GitHub Actions workflow
-- name: Architecture Review
-  run: |
-    python architecture_review_agent.py docs/architecture.md \
-      --output architecture-review.html \
-      --format html
-    
-    # Upload report as artifact
-    - uses: actions/upload-artifact@v3
-      with:
-        name: architecture-review
-        path: architecture-review.html
-```
-
-### Integration with Review Tools
-```python
-# Example integration with review management system
-def integrate_with_review_system(artifact_path):
-    agent = ArchitectureReviewAgent()
-    artifact = agent.load_artifact(artifact_path)
-    comments = agent.review_artifact(artifact)
-    
-    # Convert to review system format
-    review_items = convert_to_review_format(comments)
-    
-    # Submit to review system
-    review_system.create_review(artifact_path, review_items)
-```
-
-## Best Practices
-
-### For Architecture Authors
-1. **Follow Standard Structure**: Include all required sections identified by the agent
-2. **Address Security Early**: Ensure security considerations are comprehensive
-3. **Document Scalability**: Include scaling strategies and performance requirements
-4. **Plan for Monitoring**: Specify observability and monitoring approaches
-5. **Consider Compliance**: Address relevant regulatory requirements
-
-### For Enterprise Architects
-1. **Pre-Review Preparation**: Use preparation notes to focus review discussions
-2. **Prioritize Critical Issues**: Address critical and high-severity issues first
-3. **Reference Standards**: Use the agent's reference links to validate approaches
-4. **Track Improvements**: Use scoring to measure architecture quality over time
-
-## Contributing
-
-To extend the agent for your organization:
-
-1. **Fork the project** and customize review rules
-2. **Add industry-specific patterns** to the patterns database
-3. **Implement custom standards** validation logic
-4. **Share improvements** back with the community
-
-## License
-
-This project is designed to be customized and extended for enterprise use. Adapt it to your organization's specific architecture standards and review processes.
-
-## Support
-
-For questions or customization assistance:
-- Review the configuration files in the `standards/` directory
-- Examine the sample architecture document
-- Modify patterns and rules to match your standards
-- Test with your organization's architecture documents
-
----
-
-*Built to enhance enterprise architecture review processes and ensure consistent, high-quality solution designs.*

@@ -212,24 +212,45 @@ class ArchitectureReviewAgent:
         if not path.exists():
             raise FileNotFoundError(f"Artifact file not found: {file_path}")
         
-        with open(path, 'r', encoding='utf-8') as f:
-            content = f.read()
+        # Use document processor for supported file types
+        try:
+            from document_processor import DocumentProcessor
+            processor = DocumentProcessor()
+            content, metadata = processor.process_document(str(path))
+            
+            # Convert document metadata to our format
+            artifact_metadata = {
+                "file_name": path.name,
+                "file_size": metadata.file_size,
+                "last_modified": metadata.last_modified,
+                "document_format": metadata.format.value,
+                "word_count": metadata.word_count,
+                "sections": metadata.sections,
+                "tables_count": metadata.tables_count,
+                "images_count": metadata.images_count
+            }
+            
+        except (ImportError, Exception) as e:
+            # Fallback to plain text reading if document processor fails
+            print(f"Warning: Document processor not available, falling back to plain text: {e}")
+            with open(path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            artifact_metadata = {
+                "file_name": path.name,
+                "file_size": path.stat().st_size,
+                "last_modified": path.stat().st_mtime
+            }
         
         # Auto-detect artifact type if not specified
         if artifact_type is None:
             artifact_type = self._detect_artifact_type(content, path.name)
         
-        metadata = {
-            "file_name": path.name,
-            "file_size": path.stat().st_size,
-            "last_modified": path.stat().st_mtime
-        }
-        
         return ArchitectureArtifact(
             file_path=str(path),
             artifact_type=artifact_type,
             content=content,
-            metadata=metadata
+            metadata=artifact_metadata
         )
     
     def _detect_artifact_type(self, content: str, filename: str) -> ArtifactType:
