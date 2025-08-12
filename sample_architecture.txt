@@ -1,16 +1,18 @@
-# Sample Architecture Document
+Sample Architecture Document
 
-## Business Requirements
+This is a sample architecture document in plain text format.
+
+Business Requirements:
 - High availability system
-- Scalable architecture  
+- Scalable architecture
 - Security compliance
 
-## Technical Requirements
+Technical Requirements:
 - Microservices architecture
 - RESTful APIs
 - Database clustering
 
-## Security Considerations
+Security Considerations:
 - Authentication and authorization
 - Data encryption
 - Network security
