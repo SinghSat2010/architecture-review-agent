@@ -1,0 +1,101 @@
+{
+  "artifact_info": {
+    "file_path": "sample_architecture.md",
+    "artifact_type": "solution_architecture",
+    "file_size": 5317,
+    "last_modified": 1754862020.6601903
+  },
+  "review_summary": {
+    "total_comments": 1,
+    "overall_score": 95,
+    "severity_breakdown": {
+      "critical": 0,
+      "high": 1,
+      "medium": 0,
+      "low": 0,
+      "info": 0
+    },
+    "category_breakdown": {
+      "Completeness": 1
+    }
+  },
+  "comments": [
+    {
+      "section": "Document Structure",
+      "severity": "high",
+      "category": "Completeness",
+      "issue": "Missing required sections: scalability_design, monitoring_logging",
+      "recommendation": "Add the missing sections to ensure comprehensive architecture documentation",
+      "references": [
+        "Architecture Documentation Standards"
+      ],
+      "line_number": null
+    }
+  ],
+  "preparation_notes": [
+    "⚠️  HIGH: Review scalability and completeness concerns",
+    "📋 Focus areas for discussion: Completeness",
+    "📖 Review all referenced standards and guidelines before the meeting",
+    "🎯 Prepare specific examples and alternatives for flagged issues"
+  ],
+  "session_info": {
+    "session_id": "00ecea9f",
+    "timestamp": "2025-08-12 11:53:04.841415",
+    "artifact_path": "sample_architecture.md",
+    "reviewer": "cli-user",
+    "config_version": "2.0",
+    "plugin_versions": {
+      "cloud_analyzer_Cloud Architecture Analyzer": "1.0.0",
+      "performance_analyzer_Performance Analyzer": "1.2.0"
+    },
+    "total_comments": 1,
+    "score": 95,
+    "duration_seconds": 0.002984
+  },
+  "configuration_info": {
+    "standards_loaded": 7,
+    "custom_standards": [],
+    "plugins_enabled": true,
+    "plugin_count": 2
+  },
+  "advanced_metrics": {
+    "risk_score": 5,
+    "complexity_indicator": "low",
+    "trend": "excellent",
+    "categories_count": 1,
+    "average_severity": 5.0
+  },
+  "recommendations_summary": {
+    "immediate_actions": [
+      {
+        "action": "Add the missing sections to ensure comprehensive architecture documentation",
+        "category": "Completeness",
+        "section": "Document Structure"
+      }
+    ],
+    "short_term_improvements": [],
+    "long_term_enhancements": []
+  },
+  "compliance_matrix": {
+    "base_standards": {
+      "security": {
+        "status": "compliant",
+        "issues": 0
+      },
+      "scalability": {
+        "status": "compliant",
+        "issues": 0
+      },
+      "monitoring": {
+        "status": "compliant",
+        "issues": 0
+      },
+      "completeness": {
+        "status": "non-compliant",
+        "issues": 1
+      }
+    },
+    "custom_standards": {},
+    "overall_compliance": 75.0
+  }
+}

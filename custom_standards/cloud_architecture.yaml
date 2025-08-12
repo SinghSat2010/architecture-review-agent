@@ -1,0 +1,34 @@
+anti_patterns:
+- Lift and shift without optimization
+- Single cloud vendor lock-in
+- Untagged resources
+description: Enterprise cloud architecture standards and best practices
+guidelines:
+- Use infrastructure as code for all deployments
+- Implement proper resource tagging strategy
+- Design for cloud-native scalability patterns
+- Ensure data sovereignty compliance
+name: Cloud Architecture Standards
+requirements:
+  cloud_native:
+    mandatory: true
+    patterns:
+    - containerization
+    - orchestration
+    - service mesh
+    severity: high
+  cost_optimization:
+    mandatory: true
+    patterns:
+    - resource tagging
+    - auto-scaling
+    - reserved instances
+    severity: medium
+  multi_cloud:
+    mandatory: false
+    patterns:
+    - cloud agnostic
+    - vendor neutrality
+    - hybrid cloud
+    severity: medium
+version: '2.0'

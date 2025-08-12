@@ -1,0 +1,40 @@
+{
+  "name": "API Design Standards",
+  "version": "1.5",
+  "description": "REST API design standards and conventions",
+  "requirements": {
+    "rest_compliance": {
+      "patterns": [
+        "rest",
+        "http verbs",
+        "status codes",
+        "resource naming"
+      ],
+      "mandatory": true,
+      "severity": "high"
+    },
+    "api_versioning": {
+      "patterns": [
+        "versioning strategy",
+        "backward compatibility"
+      ],
+      "mandatory": true,
+      "severity": "high"
+    },
+    "documentation": {
+      "patterns": [
+        "openapi",
+        "swagger",
+        "api documentation"
+      ],
+      "mandatory": true,
+      "severity": "medium"
+    }
+  },
+  "guidelines": [
+    "Use noun-based resource URLs",
+    "Implement proper HTTP status codes",
+    "Provide comprehensive API documentation",
+    "Follow semantic versioning for API versions"
+  ]
+}
