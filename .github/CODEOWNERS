@@ -1,0 +1,20 @@
+# Global owners - these users/teams will be requested to review all PRs
+* @singhsat2010
+
+# Core Python files
+*.py @singhsat2010
+
+# Standards and configuration files
+/standards/ @singhsat2010
+/custom_standards/ @singhsat2010
+
+# CI/CD configuration
+/.github/ @singhsat2010
+
+# Documentation
+*.md @singhsat2010
+/examples/ @singhsat2010
+
+# Dependencies and setup
+requirements.txt @singhsat2010
+setup.py @singhsat2010

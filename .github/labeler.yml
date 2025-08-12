@@ -1,0 +1,47 @@
+# Configuration for automatic labeling of PRs based on file changes
+
+# Core functionality
+"enhancement":
+  - "architecture_review_agent.py"
+  - "review_architecture.py"
+  - "setup_agent.py"
+
+# Standards and rules
+"standards":
+  - "standards/**/*"
+  - "custom_standards/**/*"
+
+# Documentation
+"documentation":
+  - "*.md"
+  - "examples/**/*"
+  - "**/*.md"
+
+# Configuration
+"config":
+  - "requirements.txt"
+  - "*.yml"
+  - "*.yaml"
+  - "*.json"
+
+# Testing
+"testing":
+  - "test_*.py"
+  - "**/test_*.py"
+  - "**/*_test.py"
+
+# CI/CD
+"ci":
+  - ".github/**/*"
+
+# Dependencies
+"dependencies":
+  - "requirements.txt"
+  - "requirements.in"
+  - "setup.py"
+  - "pyproject.toml"
+
+# Bug fixes (based on common patterns)
+"bug":
+  - any: ['**/*']
+    all: ['!**/*.md', '!**/*.txt']
