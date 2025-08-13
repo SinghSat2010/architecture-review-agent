@@ -1,19 +1,37 @@
 #!/usr/bin/env python3
 """
+Architecture Review Agent - Main CLI Interface
+Performs automated architecture reviews of various document types
+"""
+
+import argparse
+import json
+import sys
+import os
+import re
+from pathlib import Path
+from typing import Dict, Any, List, Optional
+
+# Add safe printing for Windows compatibility
+def safe_print(text: str) -> None:
+    """Safely print text that may contain Unicode characters"""
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        # Fallback for Windows console encoding issues
+        safe_text = text.encode('ascii', 'replace').decode('ascii')
+        print(safe_text)
+
+"""
 Architecture Review Agent
 
 This agent reads solution architecture, architecture patterns, and architecture standards
 artifacts to provide review comments and prepare enterprise architects for reviews.
 """
 
-import os
-import json
 import re
-from typing import Dict, List, Any, Optional
 from dataclasses import dataclass
 from enum import Enum
-import argparse
-from pathlib import Path
 
 
 class ArtifactType(Enum):
@@ -522,18 +540,18 @@ class ArchitectureReviewAgent:
         
         critical_issues = [c for c in comments if c.severity == ReviewSeverity.CRITICAL]
         if critical_issues:
-            notes.append("🚨 CRITICAL: Address security and critical architectural issues before review")
+            notes.append("[CRITICAL] CRITICAL: Address security and critical architectural issues before review")
         
         high_issues = [c for c in comments if c.severity == ReviewSeverity.HIGH]
         if high_issues:
-            notes.append("⚠️  HIGH: Review scalability and completeness concerns")
+            notes.append("[HIGH] HIGH: Review scalability and completeness concerns")
         
         categories = list(set(c.category for c in comments))
         if categories:
-            notes.append(f"📋 Focus areas for discussion: {', '.join(categories)}")
+            notes.append(f"[FOCUS] Focus areas for discussion: {', '.join(categories)}")
         
-        notes.append("📖 Review all referenced standards and guidelines before the meeting")
-        notes.append("🎯 Prepare specific examples and alternatives for flagged issues")
+        notes.append("[REVIEW] Review all referenced standards and guidelines before the meeting")
+        notes.append("[PREPARE] Prepare specific examples and alternatives for flagged issues")
         
         return notes
     
@@ -656,14 +674,14 @@ class ArchitectureReviewAgent:
         
         for comment in report['comments']:
             severity_emoji = {
-                'critical': '🚨',
-                'high': '⚠️',
-                'medium': '⚡',
-                'low': 'ℹ️',
-                'info': '📋'
+                'critical': '[CRITICAL]',
+                'high': '[HIGH]',
+                'medium': '[MEDIUM]',
+                'low': '[LOW]',
+                'info': '[INFO]'
             }
             
-            emoji = severity_emoji.get(comment['severity'], '📋')
+            emoji = severity_emoji.get(comment['severity'], '[INFO]')
             md_content += f"""### {emoji} {comment['section']} - {comment['category']}
 **Severity:** {comment['severity'].upper()}
 
@@ -706,7 +724,7 @@ def main():
         artifact_type = ArtifactType(args.type) if args.type else None
         artifact = agent.load_artifact(args.artifact_file, artifact_type)
         
-        print(f"Analyzing {artifact.artifact_type.value}: {artifact.file_path}")
+        safe_print(f"Analyzing {artifact.artifact_type.value}: {artifact.file_path}")
         
         # Perform the review
         comments = agent.review_artifact(artifact)
@@ -715,30 +733,30 @@ def main():
         report = agent.generate_review_report(artifact, comments)
         
         # Display summary
-        print(f"\n📊 Review Summary:")
-        print(f"   Overall Score: {report['review_summary']['overall_score']}/100")
-        print(f"   Total Issues: {report['review_summary']['total_comments']}")
-        print(f"   Critical: {report['review_summary']['severity_breakdown']['critical']}")
-        print(f"   High: {report['review_summary']['severity_breakdown']['high']}")
+        safe_print(f"\n[REPORT] Review Summary:")
+        safe_print(f"   Overall Score: {report['review_summary']['overall_score']}/100")
+        safe_print(f"   Total Issues: {report['review_summary']['total_comments']}")
+        safe_print(f"   Critical: {report['review_summary']['severity_breakdown']['critical']}")
+        safe_print(f"   High: {report['review_summary']['severity_breakdown']['high']}")
         
         # Export report if specified
         if args.output:
             agent.export_report(report, args.output, args.format)
-            print(f"\n📁 Report exported to: {args.output}")
+            safe_print(f"\n[FILE] Report exported to: {args.output}")
         else:
             # Print key issues to console
             critical_issues = [c for c in comments if c.severity == ReviewSeverity.CRITICAL]
             if critical_issues:
-                print("\n🚨 Critical Issues:")
+                safe_print("\n[CRITICAL] Critical Issues:")
                 for issue in critical_issues[:3]:  # Show top 3
-                    print(f"   • {issue.issue}")
+                    safe_print(f"   • {issue.issue}")
         
-        print("\n✅ Review completed successfully!")
+        safe_print("\n[SUCCESS] Review completed successfully!")
         
     except FileNotFoundError as e:
-        print(f"❌ Error: {e}")
+        safe_print(f"[ERROR] Error: {e}")
     except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+        safe_print(f"[ERROR] Unexpected error: {e}")
 
 
 if __name__ == "__main__":
